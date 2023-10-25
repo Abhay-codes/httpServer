@@ -8,7 +8,18 @@ const myServer=http.createServer((req,res)=>{//create a server  //callback funct
     const log = `${Date.now()}: ${req.url} New requast received\n`;
 
     fs.appendFile('log.txt',log,(err,data)=>{
-        res.end("Hello from server");
+        switch(req.url){
+            case '/':
+                res.end("homepage");
+                break;
+            case '/about':
+                res.end("about");
+                break;
+            default:
+                res.end("404 not found");
+                break;
+        }
+        
 
 
     });
